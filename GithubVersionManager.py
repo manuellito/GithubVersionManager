@@ -13,7 +13,7 @@ class GithubVersionManager:
 
    DEFAULT_GITHUB_URL = "https://github.com/"
    RELEASES_URL = "releases"
-   PATTERN_VERSION = "([a-zA-Z])*(([0-9](\.)?)+((-rc[0-9]*)|(-alpha[0-9]*)|(-beta[0-9]*))?)"
+   PATTERN_VERSION = "([a-zA-Z])*(([0-9](\.)?)+((-rc[0-9]*)|(rc[0-9]*)|(-alpha[0-9]*)|(-beta[0-9]*))?)"
    PATTERN_LAST_CHAR = ".*([0-9]$)"
    NEXT_PAGE = "?after="
    NOT_STABLE_INDICATOR = ["alpha", "beta", "rc"]
@@ -53,7 +53,7 @@ class GithubVersionManager:
                url = f"{url}{self.NEXT_PAGE}{self.versions[-1]}"
          pageContent = self._get_page(url)
          if pageContent == None:
-            print("It sould be there is an error. Content URL is invalid")
+            print("It should be there is an error. Content URL is invalid")
             exit("1")
          versions = self._get_version_from_page(pageContent)
          if len(versions) > 0:
