@@ -86,7 +86,7 @@ class GithubVersionManager:
          :return: tab of versions in the page
       """
       current_versions = []
-      soup = BeautifulSoup(page_content, "lxml")
+      soup = BeautifulSoup(page_content, "html.parser")
       versions_in_page = soup.find_all('span', attrs={"class":"css-truncate-target"})
       if not self._is_more_page(versions_in_page):
          return current_versions
