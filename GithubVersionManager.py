@@ -218,10 +218,13 @@ class GithubVersionManager:
          self._sort_versions()
       for version in self.versions:
          if only_stable == True:
+            is_stable = True
             for early_indicator in self.NOT_STABLE_INDICATOR:
                if early_indicator in version.lower():
+                  is_stable = False
                   break
-            return version
+            if is_stable:
+               return version
          else:
             return version
 
